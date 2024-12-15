@@ -14,107 +14,91 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { Icons } from "./icons";
+import { ModeToggle } from "./mode-toggle";
 
-const components: { title: string; href: string; description: string }[] = [
+const posts: { title: string; href: string; description: string }[] = [
   {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
+    title: "React",
+    href: "/blog/react",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "Learn React and NextJS by reading articles.",
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
+    title: "CSS",
+    href: "/blogs/css",
     description:
-      "For sighted users to preview content available behind a link.",
+      "For keeping you updated about CSS and the new features.",
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
+    title: "Javascript",
+    href: "/blogs/javascript",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "Learn everything that is trending in the javascript world.",
   },
   {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    title: "Performance",
+    href: "/blog/performance",
+    description: "Learn to make your next app BLAZING fast.",
   },
   {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
+    title: "Animation",
+    href: "/blog/animation",
     description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+      "Everthing you want to know about animations. You will find it here.",
   },
   {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
+    title: "Career",
+    href: "/blog/career",
     description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "A guide to prepare you for the industry.",
   },
 ];
 
-export function MainNav() {
+export function MainNav({className}: {className?:string}) {
   return (
+    <div className={cn("flex flex-col items-start justify-start md:flex-row md:items-center md:justify-between pt-10 z-50",
+      className
+    )}>
+      <Link href={"/"}>
+      <div className="flex items-center justify-between w-36">
+        <Icons.logo className="h-6 w-6"/>
+        <p>Blogger's Stop</p>
+      </div>
+      </Link>
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
-                <NavigationMenuLink asChild>
-                  <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    {/* <Icons.logo className="h-6 w-6" /> */}
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
-                    </div>
-                    <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+        <NavigationMenuItem> 
+          <NavigationMenuTrigger>Articles</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
+              {posts.map((post) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={post.title}
+                  title={post.title}
+                  href={post.href}
                 >
-                  {component.description}
+                  {post.description}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+          <Link href="/about" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
+              About
             </NavigationMenuLink>
           </Link>
-        </NavigationMenuItem>
+        </NavigationMenuItem>        
       </NavigationMenuList>
     </NavigationMenu>
+        <div className="flex items-center justify-between w-20">
+          <ModeToggle/>
+          <Link href={'/rss'}><Icons.rss className="h-6 w-6"/>
+          </Link>
+        </div>
+    </div>
   );
 }
 
