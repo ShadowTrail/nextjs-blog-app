@@ -1,5 +1,3 @@
-export const categories = ['react', 'typescript', 'javascript', 'css', 'animation', 'performance']
-
 export const popularPosts = [
   {
     title: "Spaces vs Tabs: The Indentation Debate Continues",

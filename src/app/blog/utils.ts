@@ -3,6 +3,12 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
+
+// parameter datatype as well as return datatype.
+// For front end, react components, 
+// For rendering, let it be
+//  For backend , classes are a must!
+
 // Step 1: Get all the mdx files from the dir.
 function getMDXFiles(dir: string) {
     return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
